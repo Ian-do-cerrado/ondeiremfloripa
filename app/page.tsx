@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { MapPin, Star, Users, Clock, Phone, Mail, Utensils, Building, Waves, BookOpen } from "lucide-react"
+import { MapPin, Star, Users, Clock, Phone, Mail, Utensils, Building, Waves, BookOpen, Award, ShieldCheck, Calendar } from "lucide-react"
 import Link from "next/link"
 
 const tours = [
@@ -86,55 +86,55 @@ const restaurants = [
   },
   {
     id: 2,
-    name: "Toca da Garoupa",
-    cuisine: "Açoriana",
-    location: "Lagoa da Conceição",
+    name: "Artusi Ristorante",
+    cuisine: "Italiana",
+    location: " Centro",
     rating: 4.7,
     priceRange: "R$ 60-120",
-    image: "/placeholder-qu4vr.png",
-    description: "Culinária tradicional açoriana em ambiente aconchegante.",
+    image: "/Artusi_restaurante.jpg",
+    description: "Restaurante verdadeiramente italiano, com a alta qualidade.",
   },
   {
     id: 3,
-    name: "Marisqueira Sintra",
-    cuisine: "Portuguesa",
-    location: "Centro",
+    name: "Fogo e Mar",
+    cuisine: "Frutos do Mar",
+    location: "Jurerê Internacional",
     rating: 4.8,
-    priceRange: "R$ 70-140",
-    image: "/placeholder-qijoq.png",
-    description: "Autêntica culinária portuguesa com vista para o mar.",
+    priceRange: "R$ 140-200",
+    image: "/fogo_e_mar.jpg",
+    description: "Representa a culinária contemporânea do mar à brasa.",
   },
 ]
 
 const hotels = [
   {
     id: 1,
-    name: "Pousada dos Sonhos",
-    category: "Boutique",
-    location: "Jurerê Internacional",
+    name: "Jurerê Beach Village",
+    category: "4 Estrelas",
+    location: "Jurerê Leste",
     rating: 4.8,
-    priceRange: "R$ 300-500",
-    image: "/placeholder-83l6z.png",
-    description: "Hotel boutique com vista para o mar e serviço personalizado.",
+    priceRange: "R$ 490",
+    image: "/jurere-beach-village.jpg",
+    description: "Este hotel descontraído com acesso direto à praia de Jurerê fica a 11 km do parque aquático Água Show Park.",
   },
   {
     id: 2,
-    name: "Resort Costão do Santinho",
-    category: "Resort",
-    location: "Santinho",
+    name: "Lagoa Nômade",
+    category: "Lagoa",
+    location: "Lagoa da Conceição",
     rating: 4.6,
-    priceRange: "R$ 400-800",
-    image: "/placeholder-jmb33.png",
-    description: "Resort completo com spa, golf e acesso direto à praia.",
+    priceRange: "R$ 123",
+    image: "/lagoanomade.jpg",
+    description: "Área à beira do lago com restaurantes vegetarianos, bares animados, esportes aquáticos e uma feira de artesanato aos domingos.",
   },
   {
     id: 3,
-    name: "Pousada Vila Tamarindo",
-    category: "Pousada",
-    location: "Lagoa da Conceição",
+    name: "Sea Wolf Surf Hostel",
+    category: "Hostel",
+    location: "Barra da Lagoa",
     rating: 4.7,
-    priceRange: "R$ 200-350",
-    image: "/placeholder-m05qf.png",
+    priceRange: "R$ 147",
+    image: "/seawolfsurfhostel.jpg",
     description: "Pousada charmosa no coração da Lagoa da Conceição.",
   },
 ]
@@ -147,7 +147,7 @@ const beaches = [
     location: "Sul da Ilha",
     rating: 4.8,
     features: ["Surf", "Dunas", "Restaurantes"],
-    image: "/placeholder-84rfw.png",
+    image: "/Praia da Joaquina.webp",
     description: "Famosa praia de surf com dunas e campeonatos internacionais.",
   },
   {
@@ -157,7 +157,7 @@ const beaches = [
     location: "Leste da Ilha",
     rating: 4.7,
     features: ["Vida Noturna", "Esportes", "Beach Clubs"],
-    image: "/placeholder-o4emz.png",
+    image: "/PraiaMole.jpg",
     description: "Praia badalada frequentada por jovens e surfistas.",
   },
   {
@@ -167,41 +167,47 @@ const beaches = [
     location: "Norte da Ilha",
     rating: 4.6,
     features: ["Águas Calmas", "Infraestrutura", "Família"],
-    image: "/placeholder-7cw8l.png",
+    image: "/florianopolis-praia-jurere-internacional.jpg",
     description: "Praia tranquila ideal para famílias com excelente infraestrutura.",
   },
 ]
 
-const tourGuides = [
+const credibilityItems = [
   {
     id: 1,
-    name: "Carlos Silva",
-    specialty: "Trilhas e Ecoturismo",
-    experience: "8 anos",
-    rating: 4.9,
-    languages: ["Português", "Inglês", "Espanhol"],
-    image: "/placeholder-ufbfs.png",
-    description: "Especialista em trilhas e conhecedor da fauna e flora local.",
+    title: "Experiências Memoráveis",
+    description: "Criamos roteiros personalizados para que cada momento em Florianópolis seja inesquecível.",
+    icon: "Star",
   },
   {
     id: 2,
-    name: "Marina Santos",
-    specialty: "História e Cultura",
-    experience: "12 anos",
-    rating: 4.8,
-    languages: ["Português", "Inglês", "Alemão"],
-    image: "/placeholder-ux7h1.png",
-    description: "Historiadora especializada na cultura açoriana de Florianópolis.",
+    title: "Guias Locais Especializados",
+    description: "Nossos guias são profundos conhecedores da ilha, garantindo segurança e informações valiosas.",
+    icon: "BookOpen",
   },
   {
     id: 3,
-    name: "João Pescador",
-    specialty: "Esportes Aquáticos",
-    experience: "15 anos",
-    rating: 4.7,
-    languages: ["Português", "Inglês"],
-    image: "/placeholder-f05qt.png",
-    description: "Instrutor de surf e especialista em esportes aquáticos.",
+    title: "Suporte 24/7",
+    description: "Estamos sempre disponíveis para ajudar, antes, durante e depois da sua viagem.",
+    icon: "Phone",
+  },
+  {
+    id: 4,
+    title: "Segurança e Conforto",
+    description: "Priorizamos sua segurança e oferecemos o máximo conforto em todos os nossos serviços.",
+    icon: "ShieldCheck",
+  },
+  {
+    id: 5,
+    title: "Avaliações Excelentes",
+    description: "Orgulhamo-nos das avaliações positivas de nossos clientes satisfeitos.",
+    icon: "Users",
+  },
+  {
+    id: 6,
+    title: "Flexibilidade e Adaptação",
+    description: "Adaptamos nossos serviços às suas necessidades, garantindo uma experiência perfeita.",
+    icon: "Calendar",
   },
 ]
 
@@ -213,7 +219,7 @@ export default function Home() {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <MapPin className="h-8 w-8 text-primary" />
-            <h1 className="text-2xl font-bold text-foreground">Floripa Adventures</h1>
+            <h1 className="text-2xl font-bold text-foreground">Barnnuns Experiences</h1>
           </div>
           <nav className="hidden md:flex items-center space-x-6">
             <Link href="#tours" className="text-muted-foreground hover:text-foreground transition-colors">
@@ -228,8 +234,8 @@ export default function Home() {
             <Link href="#beaches" className="text-muted-foreground hover:text-foreground transition-colors">
               Praias
             </Link>
-            <Link href="#guides" className="text-muted-foreground hover:text-foreground transition-colors">
-              Guias
+            <Link href="#credibility" className="text-muted-foreground hover:text-foreground transition-colors">
+              Credibilidade
             </Link>
             <Link href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">
               Contato
@@ -252,7 +258,7 @@ export default function Home() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url('/florianopolis-praia-ponte-hercilio-luz.png')",
+            backgroundImage: "url('/florianopolis.jpg')",
           }}
         >
           <div className="absolute inset-0 bg-black/40" />
@@ -535,56 +541,45 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="guides" className="py-20 bg-muted/30">
+      <section id="credibility" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <div className="flex items-center justify-center mb-4">
-              <BookOpen className="h-8 w-8 text-primary mr-3" />
-              <h3 className="text-4xl font-bold text-foreground">Guias Especializados</h3>
+              <Award className="h-8 w-8 text-primary mr-3" />
+              <h3 className="text-4xl font-bold text-foreground">Por Que Escolher a Barnnuns Experiences?</h3>
             </div>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
-              Conheça nossos guias experientes que tornarão sua experiência em Florianópolis inesquecível
+              Sua confiança é a nossa prioridade. Conheça os pilares da nossa credibilidade.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {tourGuides.map((guide) => (
-              <Card key={guide.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                <div className="relative">
-                  <img src={guide.image || "/placeholder.svg"} alt={guide.name} className="w-full h-48 object-cover" />
-                  <Badge className="absolute top-4 right-4 bg-accent text-accent-foreground">{guide.experience}</Badge>
-                </div>
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-xl text-balance">{guide.name}</CardTitle>
-                    <div className="flex items-center space-x-1">
-                      <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                      <span className="text-sm font-medium">{guide.rating}</span>
+            {credibilityItems.map((item) => {
+              const iconComponents = {
+                Star,
+                BookOpen,
+                Phone,
+                ShieldCheck,
+                Users,
+                Calendar,
+              };
+
+              const IconComponent = iconComponents[item.icon as keyof typeof iconComponents];
+
+              return (
+                <Card key={item.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300 text-center">
+                  <CardHeader className="flex flex-col items-center">
+                    <div className="p-4 bg-primary/10 rounded-full mb-4">
+                      {IconComponent && <IconComponent className="h-8 w-8 text-primary" />}
                     </div>
-                  </div>
-                  <CardDescription className="text-pretty">{guide.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="mb-4">
-                    <div className="text-sm text-muted-foreground mb-2">
-                      <strong>Especialidade:</strong> {guide.specialty}
-                    </div>
-                    <div className="text-sm text-muted-foreground mb-2">
-                      <strong>Idiomas:</strong> {guide.languages.join(", ")}
-                    </div>
-                  </div>
-                  <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold" asChild>
-                    <a
-                      href={`https://wa.me/5548991416788?text=Olá! Gostaria de contratar o guia: ${encodeURIComponent(guide.name)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Contratar Guia
-                    </a>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+                    <CardTitle className="text-xl text-balance">{item.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-pretty">{item.description}</CardDescription>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -629,7 +624,7 @@ export default function Home() {
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <MapPin className="h-6 w-6 text-primary" />
-                <h4 className="text-lg font-semibold">Floripa Adventures</h4>
+                <h4 className="text-lg font-semibold">Barnnuns Experiences</h4>
               </div>
               <p className="text-muted-foreground text-pretty">
                 Sua porta de entrada para as melhores experiências em Florianópolis.
@@ -649,12 +644,12 @@ export default function Home() {
                 <p>Passeios e Trilhas</p>
                 <p>Restaurantes</p>
                 <p>Hospedagem</p>
-                <p>Guias Turísticos</p>
+                <p>Credibilidade</p>
               </div>
             </div>
           </div>
           <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
-            <p>&copy; 2024 Floripa Adventures. Todos os direitos reservados.</p>
+            <p>&copy; 2024 Barnnuns Experiences. Todos os direitos reservados.</p>
           </div>
         </div>
       </footer>
