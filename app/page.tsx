@@ -1,7 +1,21 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { MapPin, Star, Users, Clock, Phone, Mail, Utensils, Building, Waves, BookOpen, Award, ShieldCheck, Calendar } from "lucide-react"
+import {
+  MapPin,
+  Star,
+  Users,
+  Clock,
+  Phone,
+  Mail,
+  Utensils,
+  Building,
+  Waves,
+  BookOpen,
+  Award,
+  ShieldCheck,
+  Calendar,
+} from "lucide-react"
 import Link from "next/link"
 
 const tours = [
@@ -115,7 +129,8 @@ const hotels = [
     rating: 4.8,
     priceRange: "R$ 490",
     image: "/jurere-beach-village.jpg",
-    description: "Este hotel descontraído com acesso direto à praia de Jurerê fica a 11 km do parque aquático Água Show Park.",
+    description:
+      "Este hotel descontraído com acesso direto à praia de Jurerê fica a 11 km do parque aquático Água Show Park.",
   },
   {
     id: 2,
@@ -125,7 +140,8 @@ const hotels = [
     rating: 4.6,
     priceRange: "R$ 123",
     image: "/lagoanomade.jpg",
-    description: "Área à beira do lago com restaurantes vegetarianos, bares animados, esportes aquáticos e uma feira de artesanato aos domingos.",
+    description:
+      "Área à beira do lago com restaurantes vegetarianos, bares animados, esportes aquáticos e uma feira de artesanato aos domingos.",
   },
   {
     id: 3,
@@ -562,12 +578,15 @@ export default function Home() {
                 ShieldCheck,
                 Users,
                 Calendar,
-              };
+              }
 
-              const IconComponent = iconComponents[item.icon as keyof typeof iconComponents];
+              const IconComponent = iconComponents[item.icon as keyof typeof iconComponents]
 
               return (
-                <Card key={item.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300 text-center">
+                <Card
+                  key={item.id}
+                  className="overflow-hidden hover:shadow-lg transition-shadow duration-300 text-center"
+                >
                   <CardHeader className="flex flex-col items-center">
                     <div className="p-4 bg-primary/10 rounded-full mb-4">
                       {IconComponent && <IconComponent className="h-8 w-8 text-primary" />}
@@ -578,8 +597,217 @@ export default function Home() {
                     <CardDescription className="text-pretty">{item.description}</CardDescription>
                   </CardContent>
                 </Card>
-              );
+              )
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* Google Reviews Section */}
+      <section id="reviews" className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center mb-4">
+              <Star className="h-8 w-8 text-yellow-400 fill-yellow-400 mr-3" />
+              <h3 className="text-4xl font-bold text-foreground">O Que Nossos Clientes Dizem</h3>
+            </div>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
+              Avaliações reais de clientes satisfeitos com nossas experiências
+            </p>
+            <div className="flex items-center justify-center gap-2 mt-6">
+              <div className="flex">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <Star key={star} className="h-6 w-6 text-yellow-400 fill-yellow-400" />
+                ))}
+              </div>
+              <span className="text-2xl font-bold text-foreground">5.0</span>
+              <a
+                href="https://share.google/NOAPOREoJgkLaBFvb"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline ml-2"
+              >
+                Ver no Google
+              </a>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Review 1 */}
+            <Card className="hover:shadow-lg transition-shadow duration-300">
+              <CardHeader>
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                      <span className="text-lg font-semibold text-primary">MC</span>
+                    </div>
+                    <div>
+                      <CardTitle className="text-lg">Maria Clara</CardTitle>
+                      <div className="flex mt-1">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <Star key={star} className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground text-pretty">
+                  "Experiência incrível! A trilha da Lagoinha do Leste foi inesquecível. Guias super atenciosos e
+                  profissionais. Recomendo muito!"
+                </p>
+                <p className="text-sm text-muted-foreground mt-4">Há 2 semanas</p>
+              </CardContent>
+            </Card>
+
+            {/* Review 2 */}
+            <Card className="hover:shadow-lg transition-shadow duration-300">
+              <CardHeader>
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                      <span className="text-lg font-semibold text-primary">RS</span>
+                    </div>
+                    <div>
+                      <CardTitle className="text-lg">Ricardo Santos</CardTitle>
+                      <div className="flex mt-1">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <Star key={star} className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground text-pretty">
+                  "Passeio de caiaque maravilhoso! Águas cristalinas e paisagens de tirar o fôlego. A equipe da Barnnuns
+                  é excelente, muito cuidadosa com todos os detalhes."
+                </p>
+                <p className="text-sm text-muted-foreground mt-4">Há 1 mês</p>
+              </CardContent>
+            </Card>
+
+            {/* Review 3 */}
+            <Card className="hover:shadow-lg transition-shadow duration-300">
+              <CardHeader>
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                      <span className="text-lg font-semibold text-primary">AF</span>
+                    </div>
+                    <div>
+                      <CardTitle className="text-lg">Ana Ferreira</CardTitle>
+                      <div className="flex mt-1">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <Star key={star} className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground text-pretty">
+                  "Melhor agência de turismo de Floripa! Fizemos vários passeios e todos foram perfeitos. Atendimento
+                  impecável e preços justos. Voltaremos com certeza!"
+                </p>
+                <p className="text-sm text-muted-foreground mt-4">Há 3 semanas</p>
+              </CardContent>
+            </Card>
+
+            {/* Review 4 */}
+            <Card className="hover:shadow-lg transition-shadow duration-300">
+              <CardHeader>
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                      <span className="text-lg font-semibold text-primary">PL</span>
+                    </div>
+                    <div>
+                      <CardTitle className="text-lg">Pedro Lima</CardTitle>
+                      <div className="flex mt-1">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <Star key={star} className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground text-pretty">
+                  "O passeio para a Ilha do Campeche foi sensacional! Água transparente, areia branca e um serviço de
+                  primeira. A Barnnuns superou todas as expectativas!"
+                </p>
+                <p className="text-sm text-muted-foreground mt-4">Há 1 semana</p>
+              </CardContent>
+            </Card>
+
+            {/* Review 5 */}
+            <Card className="hover:shadow-lg transition-shadow duration-300">
+              <CardHeader>
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                      <span className="text-lg font-semibold text-primary">JM</span>
+                    </div>
+                    <div>
+                      <CardTitle className="text-lg">Juliana Martins</CardTitle>
+                      <div className="flex mt-1">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <Star key={star} className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground text-pretty">
+                  "Pub Crawl incrível! Conhecemos os melhores lugares da noite de Floripa e fizemos muitos amigos. A
+                  organização foi perfeita do início ao fim!"
+                </p>
+                <p className="text-sm text-muted-foreground mt-4">Há 2 meses</p>
+              </CardContent>
+            </Card>
+
+            {/* Review 6 */}
+            <Card className="hover:shadow-lg transition-shadow duration-300">
+              <CardHeader>
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                      <span className="text-lg font-semibold text-primary">CA</span>
+                    </div>
+                    <div>
+                      <CardTitle className="text-lg">Carlos Almeida</CardTitle>
+                      <div className="flex mt-1">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <Star key={star} className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground text-pretty">
+                  "Cavalgada na praia foi uma experiência única! Os cavalos são bem cuidados e os guias muito
+                  experientes. Minha família adorou cada minuto!"
+                </p>
+                <p className="text-sm text-muted-foreground mt-4">Há 1 mês</p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="text-center mt-12">
+            <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold" asChild>
+              <a href="https://share.google/NOAPOREoJgkLaBFvb" target="_blank" rel="noopener noreferrer">
+                Ver Todas as Avaliações no Google
+              </a>
+            </Button>
           </div>
         </div>
       </section>
@@ -649,7 +877,7 @@ export default function Home() {
             </div>
           </div>
           <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
-            <p>&copy; 2024 Barnnuns Experiences. Todos os direitos reservados.</p>
+            <p>&copy; 2025 Barnnuns Experiences. Todos os direitos reservados.</p>
           </div>
         </div>
       </footer>
