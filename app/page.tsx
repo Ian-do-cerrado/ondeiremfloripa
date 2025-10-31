@@ -1,6 +1,10 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+"use client";
+
+import dynamic from "next/dynamic";
+import Script from "next/script";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import {
   MapPin,
   Star,
@@ -15,8 +19,25 @@ import {
   Award,
   ShieldCheck,
   Calendar,
-} from "lucide-react"
-import Link from "next/link"
+} from "lucide-react";
+import Link from "next/link";
+
+/** Widgets client-only (cada um injeta seu próprio script dentro do contêiner) */
+const TrustindexWidget = dynamic(() => import("@/components/TrustindexWidget"), { ssr: false });
+const TripadvisorWidget = dynamic(() => import("@/components/TripadvisorWidget"), { ssr: false });
+
+/** Instagram (Elfsight) — script carregado aqui, no local do feed */
+function InstagramFeed() {
+  return (
+    <div className="max-w-8xl mx-auto">
+      <Script src="https://elfsightcdn.com/platform.js" strategy="afterInteractive" />
+      <div
+        className="elfsight-app-819dd781-9368-4be6-bfa6-2ea60c1f007c mx-auto text-center"
+        data-elfsight-app-lazy
+      />
+    </div>
+  );
+}
 
 const tours = [
   {
@@ -85,7 +106,7 @@ const tours = [
     image: "/costa-lagoa-florianopolis-barco.png",
     description: "Navegue pela Costa da Lagoa e conheça a cultura açoriana local.",
   },
-]
+];
 
 const restaurants = [
   {
@@ -118,7 +139,7 @@ const restaurants = [
     image: "/fogo_e_mar.jpg",
     description: "Representa a culinária contemporânea do mar à brasa.",
   },
-]
+];
 
 const hotels = [
   {
@@ -153,7 +174,7 @@ const hotels = [
     image: "/seawolfsurfhostel.jpg",
     description: "Pousada charmosa no coração da Lagoa da Conceição.",
   },
-]
+];
 
 const beaches = [
   {
@@ -186,7 +207,7 @@ const beaches = [
     image: "/florianopolis-praia-jurere-internacional.jpg",
     description: "Praia tranquila ideal para famílias com excelente infraestrutura.",
   },
-]
+];
 
 const credibilityItems = [
   {
@@ -225,7 +246,7 @@ const credibilityItems = [
     description: "Adaptamos nossos serviços às suas necessidades, garantindo uma experiência perfeita.",
     icon: "Calendar",
   },
-]
+];
 
 export default function Home() {
   return (
@@ -269,13 +290,11 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Hero Section */}
+      {/* Hero */}
       <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: "url('/florianopolis.jpg')",
-          }}
+          style={{ backgroundImage: "url('/florianopolis.jpg')" }}
         >
           <div className="absolute inset-0 bg-black/40" />
         </div>
@@ -308,7 +327,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Tours Section */}
+      {/* Tours */}
       <section id="tours" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -355,7 +374,9 @@ export default function Home() {
                     </div>
                     <Button className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold" asChild>
                       <a
-                        href={`https://wa.me/5548991416788?text=Olá! Gostaria de reservar o passeio: ${encodeURIComponent(tour.name)}`}
+                        href={`https://wa.me/5548991416788?text=Olá! Gostaria de reservar o passeio: ${encodeURIComponent(
+                          tour.name
+                        )}`}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -370,6 +391,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Restaurants */}
       <section id="restaurants" className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -421,7 +443,9 @@ export default function Home() {
                     </div>
                     <Button className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold" asChild>
                       <a
-                        href={`https://wa.me/5548991416788?text=Olá! Gostaria de informações sobre o restaurante: ${encodeURIComponent(restaurant.name)}`}
+                        href={`https://wa.me/5548991416788?text=Olá! Gostaria de informações sobre o restaurante: ${encodeURIComponent(
+                          restaurant.name
+                        )}`}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -436,6 +460,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Hotels */}
       <section id="hotels" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -481,7 +506,9 @@ export default function Home() {
                     </div>
                     <Button className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold" asChild>
                       <a
-                        href={`https://wa.me/5548991416788?text=Olá! Gostaria de reservar no hotel: ${encodeURIComponent(hotel.name)}`}
+                        href={`https://wa.me/5548991416788?text=Olá! Gostaria de reservar no hotel: ${encodeURIComponent(
+                          hotel.name
+                        )}`}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -496,6 +523,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Beaches */}
       <section id="beaches" className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -543,7 +571,9 @@ export default function Home() {
                   </div>
                   <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold" asChild>
                     <a
-                      href={`https://wa.me/5548991416788?text=Olá! Gostaria de informações sobre a praia: ${encodeURIComponent(beach.name)}`}
+                      href={`https://wa.me/5548991416788?text=Olá! Gostaria de informações sobre a praia: ${encodeURIComponent(
+                        beach.name
+                      )}`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -557,6 +587,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Credibility */}
       <section id="credibility" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -571,22 +602,11 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {credibilityItems.map((item) => {
-              const iconComponents = {
-                Star,
-                BookOpen,
-                Phone,
-                ShieldCheck,
-                Users,
-                Calendar,
-              }
-
-              const IconComponent = iconComponents[item.icon as keyof typeof iconComponents]
+              const iconComponents = { Star, BookOpen, Phone, ShieldCheck, Users, Calendar };
+              const IconComponent = iconComponents[item.icon as keyof typeof iconComponents];
 
               return (
-                <Card
-                  key={item.id}
-                  className="overflow-hidden hover:shadow-lg transition-shadow duration-300 text-center"
-                >
+                <Card key={item.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300 text-center">
                   <CardHeader className="flex flex-col items-center">
                     <div className="p-4 bg-primary/10 rounded-full mb-4">
                       {IconComponent && <IconComponent className="h-8 w-8 text-primary" />}
@@ -597,223 +617,38 @@ export default function Home() {
                     <CardDescription className="text-pretty">{item.description}</CardDescription>
                   </CardContent>
                 </Card>
-              )
+              );
             })}
           </div>
         </div>
       </section>
 
-      {/* Google Reviews Section */}
-      <section id="reviews" className="py-20 bg-background">
+      {/* Social (Instagram) */}
+      <section id="social" className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <InstagramFeed />
+        </div>
+      </section>
+
+      {/* Testimonials — widgets exatamente aqui, na ordem desejada */}
+      <section id="testimonials" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <div className="flex items-center justify-center mb-4">
-              <Star className="h-8 w-8 text-yellow-400 fill-yellow-400 mr-3" />
-              <h3 className="text-4xl font-bold text-foreground">O Que Nossos Clientes Dizem</h3>
-            </div>
+            <h3 className="text-4xl font-bold text-foreground mb-4">O que nossos clientes dizem:</h3>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
-              Avaliações reais de clientes satisfeitos com nossas experiências
+              Confira as avaliações de quem já viveu a experiência Barnnuns
             </p>
-            <div className="flex items-center justify-center gap-2 mt-6">
-              <div className="flex">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <Star key={star} className="h-6 w-6 text-yellow-400 fill-yellow-400" />
-                ))}
-              </div>
-              <span className="text-2xl font-bold text-foreground">5.0</span>
-              <a
-                href="https://share.google/NOAPOREoJgkLaBFvb"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary hover:underline ml-2"
-              >
-                Ver no Google
-              </a>
-            </div>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Review 1 */}
-            <Card className="hover:shadow-lg transition-shadow duration-300">
-              <CardHeader>
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                      <span className="text-lg font-semibold text-primary">MC</span>
-                    </div>
-                    <div>
-                      <CardTitle className="text-lg">Maria Clara</CardTitle>
-                      <div className="flex mt-1">
-                        {[1, 2, 3, 4, 5].map((star) => (
-                          <Star key={star} className="h-4 w-4 text-yellow-400 fill-yellow-400" />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground text-pretty">
-                  "Experiência incrível! A trilha da Lagoinha do Leste foi inesquecível. Guias super atenciosos e
-                  profissionais. Recomendo muito!"
-                </p>
-                <p className="text-sm text-muted-foreground mt-4">Há 2 semanas</p>
-              </CardContent>
-            </Card>
-
-            {/* Review 2 */}
-            <Card className="hover:shadow-lg transition-shadow duration-300">
-              <CardHeader>
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                      <span className="text-lg font-semibold text-primary">RS</span>
-                    </div>
-                    <div>
-                      <CardTitle className="text-lg">Ricardo Santos</CardTitle>
-                      <div className="flex mt-1">
-                        {[1, 2, 3, 4, 5].map((star) => (
-                          <Star key={star} className="h-4 w-4 text-yellow-400 fill-yellow-400" />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground text-pretty">
-                  "Passeio de caiaque maravilhoso! Águas cristalinas e paisagens de tirar o fôlego. A equipe da Barnnuns
-                  é excelente, muito cuidadosa com todos os detalhes."
-                </p>
-                <p className="text-sm text-muted-foreground mt-4">Há 1 mês</p>
-              </CardContent>
-            </Card>
-
-            {/* Review 3 */}
-            <Card className="hover:shadow-lg transition-shadow duration-300">
-              <CardHeader>
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                      <span className="text-lg font-semibold text-primary">AF</span>
-                    </div>
-                    <div>
-                      <CardTitle className="text-lg">Ana Ferreira</CardTitle>
-                      <div className="flex mt-1">
-                        {[1, 2, 3, 4, 5].map((star) => (
-                          <Star key={star} className="h-4 w-4 text-yellow-400 fill-yellow-400" />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground text-pretty">
-                  "Melhor agência de turismo de Floripa! Fizemos vários passeios e todos foram perfeitos. Atendimento
-                  impecável e preços justos. Voltaremos com certeza!"
-                </p>
-                <p className="text-sm text-muted-foreground mt-4">Há 3 semanas</p>
-              </CardContent>
-            </Card>
-
-            {/* Review 4 */}
-            <Card className="hover:shadow-lg transition-shadow duration-300">
-              <CardHeader>
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                      <span className="text-lg font-semibold text-primary">PL</span>
-                    </div>
-                    <div>
-                      <CardTitle className="text-lg">Pedro Lima</CardTitle>
-                      <div className="flex mt-1">
-                        {[1, 2, 3, 4, 5].map((star) => (
-                          <Star key={star} className="h-4 w-4 text-yellow-400 fill-yellow-400" />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground text-pretty">
-                  "O passeio para a Ilha do Campeche foi sensacional! Água transparente, areia branca e um serviço de
-                  primeira. A Barnnuns superou todas as expectativas!"
-                </p>
-                <p className="text-sm text-muted-foreground mt-4">Há 1 semana</p>
-              </CardContent>
-            </Card>
-
-            {/* Review 5 */}
-            <Card className="hover:shadow-lg transition-shadow duration-300">
-              <CardHeader>
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                      <span className="text-lg font-semibold text-primary">JM</span>
-                    </div>
-                    <div>
-                      <CardTitle className="text-lg">Juliana Martins</CardTitle>
-                      <div className="flex mt-1">
-                        {[1, 2, 3, 4, 5].map((star) => (
-                          <Star key={star} className="h-4 w-4 text-yellow-400 fill-yellow-400" />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground text-pretty">
-                  "Pub Crawl incrível! Conhecemos os melhores lugares da noite de Floripa e fizemos muitos amigos. A
-                  organização foi perfeita do início ao fim!"
-                </p>
-                <p className="text-sm text-muted-foreground mt-4">Há 2 meses</p>
-              </CardContent>
-            </Card>
-
-            {/* Review 6 */}
-            <Card className="hover:shadow-lg transition-shadow duration-300">
-              <CardHeader>
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                      <span className="text-lg font-semibold text-primary">CA</span>
-                    </div>
-                    <div>
-                      <CardTitle className="text-lg">Carlos Almeida</CardTitle>
-                      <div className="flex mt-1">
-                        {[1, 2, 3, 4, 5].map((star) => (
-                          <Star key={star} className="h-4 w-4 text-yellow-400 fill-yellow-400" />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground text-pretty">
-                  "Cavalgada na praia foi uma experiência única! Os cavalos são bem cuidados e os guias muito
-                  experientes. Minha família adorou cada minuto!"
-                </p>
-                <p className="text-sm text-muted-foreground mt-4">Há 1 mês</p>
-              </CardContent>
-            </Card>
-          </div>
-
-          <div className="text-center mt-12">
-            <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold" asChild>
-              <a href="https://share.google/NOAPOREoJgkLaBFvb" target="_blank" rel="noopener noreferrer">
-                Ver Todas as Avaliações no Google
-              </a>
-            </Button>
+          <div className="mx-auto w-full max-w-screen-xl">
+            {/* NÃO adicionar <Script src="https://cdn.trustindex.io/loader.js?..."> aqui */}
+            <TrustindexWidget />
+            <TripadvisorWidget />
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-primary text-primary-foreground">
+      {/* CTA */}
+      <section id="contact" className="py-20 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
           <h3 className="text-4xl font-bold mb-6 text-balance">Pronto para Sua Próxima Aventura?</h3>
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto text-pretty">
@@ -878,11 +713,13 @@ export default function Home() {
           </div>
           <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
             <p>&copy; 2025 Barnnuns Experiences. Todos os direitos reservados.</p>
+            <p>CNPJ: 49.850.943/0001-00</p>
+            <p>Certificado Cadastur</p>
           </div>
         </div>
       </footer>
 
-      {/* Floating WhatsApp Button */}
+      {/* WhatsApp Floating */}
       <a
         href="https://wa.me/5548991416788?text=Olá! Gostaria de saber mais sobre os passeios em Florianópolis."
         target="_blank"
@@ -898,5 +735,5 @@ export default function Home() {
         </span>
       </a>
     </div>
-  )
+  );
 }

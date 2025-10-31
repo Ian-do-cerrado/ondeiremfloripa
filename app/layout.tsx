@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: "Descubra os melhores passeios, praias, restaurantes e hotéis em Florianópolis",
   generator: "v0.app",
   icons: {
-    icon: "/favicon.jpg",
+    icon: "/favicon.png",
   },
 }
 
